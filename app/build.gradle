@@ -47,6 +47,7 @@ ext {
     espresso_version = "3.3.0"
     leakcanary_version = "2.7"
     dagger_version = "2.37"
+    rxjava_version = "3.0.0"
 }
 
 dependencies {
@@ -64,6 +65,9 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger-android:$dagger_version"
     kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+
+    implementation "io.reactivex.rxjava3:rxandroid:$rxjava_version"
+    implementation "io.reactivex.rxjava3:rxjava:$rxjava_version"
 
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$android_junit_version"
