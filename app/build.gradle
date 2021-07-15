@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -14,6 +15,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,6 +50,7 @@ ext {
     leakcanary_version = "2.7"
     dagger_version = "2.37"
     rxjava_version = "3.0.0"
+    firebase_auth_version = "6.4.0"
 }
 
 dependencies {
@@ -68,6 +71,8 @@ dependencies {
 
     implementation "io.reactivex.rxjava3:rxandroid:$rxjava_version"
     implementation "io.reactivex.rxjava3:rxjava:$rxjava_version"
+
+    implementation "com.firebaseui:firebase-ui-auth:$firebase_auth_version"
 
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$android_junit_version"
