@@ -14,6 +14,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,6 +49,9 @@ ext {
     leakcanary_version = "2.7"
     dagger_version = "2.37"
     rxjava_version = "3.0.0"
+    retrofit_version = "2.9.0"
+    moshi_version = "1.12.0"
+    moshi_converter_version = "2.9.0"
 }
 
 dependencies {
@@ -68,6 +72,13 @@ dependencies {
 
     implementation "io.reactivex.rxjava3:rxandroid:$rxjava_version"
     implementation "io.reactivex.rxjava3:rxjava:$rxjava_version"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
+
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
 
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$android_junit_version"
