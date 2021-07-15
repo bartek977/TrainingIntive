@@ -7,8 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trainingintive.R
 import com.example.trainingintive.model.ActivityModel
+import javax.inject.Inject
 
-class ActivityModelAdapter() : RecyclerView.Adapter<ActivityModelAdapter.ItemViewHolder>() {
+class ActivityModelAdapter @Inject constructor() : RecyclerView.Adapter<ActivityModelAdapter.ItemViewHolder>() {
 
     var activities = listOf<ActivityModel>()
         set(value) {
