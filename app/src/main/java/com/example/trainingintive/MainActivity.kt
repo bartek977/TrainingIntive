@@ -1,10 +1,8 @@
 package com.example.trainingintive
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import com.example.trainingintive.repository.RepositoryImpl
 import com.example.trainingintive.repository.network.NetworkRepository
 import com.example.trainingintive.viewmodels.MainViewModel
@@ -28,12 +26,5 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
-
-        viewmodel.dog.observe(
-            this,
-            {
-                findViewById<TextView>(R.id.dog).text = it
-            }
-        )
     }
 }
