@@ -56,7 +56,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 
     testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test.ext:$android_junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$android_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
