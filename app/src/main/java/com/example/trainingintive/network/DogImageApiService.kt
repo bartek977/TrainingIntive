@@ -3,8 +3,6 @@ package com.example.trainingintive.network
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.reactivex.rxjava3.core.Single
-import retrofit2.Call
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -25,15 +23,10 @@ private val retrofit = Retrofit.Builder()
 
 interface DogImageApiService {
     @GET("api/breeds/image/random")
-    fun getDogImage(): Single<DogImage>
+    fun getDogImage(): Single<DogImageUrl>
 }
 
 object DogImageApi {
     val retrofitService : DogImageApiService by lazy {
         retrofit.create(DogImageApiService::class.java) }
 }
-
-data class DogImage(
-    val message: String,
-    val status: String
-)
