@@ -1,4 +1,4 @@
-package com.example.trainingintive.network
+package com.example.trainingintive.model
 
 data class DogImageUrl(
     val message: String,

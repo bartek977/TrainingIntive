@@ -10,14 +10,21 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ActivitiesViewModel(private val repository: Repository) : ViewModel() {
+
+    init {
+        repository.getDogImageUrl()
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.io())
+            .subscribe(
+                { _dog.postValue(it.message) },
+                { _dog.postValue("błąd") }
+            )
+    }
+    private val _dog = MutableLiveData<String>()
+    val dog: LiveData<String> = _dog
+
     val _activities = MutableLiveData<List<ActivityModel>>(emptyList())
     val activities: LiveData<List<ActivityModel>> = _activities
-
-    val tempActivities = listOf(
-        ActivityModel("play football", "", 2),
-        ActivityModel("go for a walk", "", 2),
-        ActivityModel("do nothing", "", 2)
-    )
 
     fun getActivity() {
         repository.getActivity()

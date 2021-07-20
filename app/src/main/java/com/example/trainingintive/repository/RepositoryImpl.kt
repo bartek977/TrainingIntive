@@ -1,11 +1,12 @@
 package com.example.trainingintive.repository
 
 import com.example.trainingintive.model.ActivityModel
-import com.example.trainingintive.network.DogImageUrl
+import com.example.trainingintive.model.DogImageUrl
 import com.example.trainingintive.repository.network.NetworkRepository
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class RepositoryImpl(
+class RepositoryImpl @Inject constructor(
     private val networkRepository: NetworkRepository
 ) : Repository {
 

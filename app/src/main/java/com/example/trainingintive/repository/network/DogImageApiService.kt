@@ -1,6 +1,6 @@
 package com.example.trainingintive.repository.network
 
-import com.example.trainingintive.network.DogImageUrl
+import com.example.trainingintive.model.DogImageUrl
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 

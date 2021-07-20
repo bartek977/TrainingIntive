@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import com.example.trainingintive.MyApplication
 import com.example.trainingintive.databinding.FragmentActivitiesBinding
 import com.example.trainingintive.repository.RepositoryImpl
-import com.example.trainingintive.repository.network.NetworkRepository
 import com.example.trainingintive.viewmodels.ActivitiesViewModel
 import com.example.trainingintive.viewmodels.ActivitiesViewModelFactory
 import javax.inject.Inject
@@ -18,7 +17,7 @@ import javax.inject.Inject
 class ActivitiesFragment : Fragment() {
 
     @Inject
-    lateinit var networkRepository: NetworkRepository
+    lateinit var repository: RepositoryImpl
 
     @Inject
     lateinit var adapter: ActivityModelAdapter
@@ -34,13 +33,7 @@ class ActivitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentActivitiesBinding.inflate(inflater, container, false)
-        val viewModel: ActivitiesViewModel by viewModels {
-            ActivitiesViewModelFactory(
-                RepositoryImpl(
-                    networkRepository
-                )
-            )
-        }
+        val viewModel: ActivitiesViewModel by viewModels { ActivitiesViewModelFactory(repository) }
         binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         val recyclerView = binding.recyclerView
