@@ -10,8 +10,12 @@ android:
     - build-tools-30.0.3
     - android-30
 
-script:
-  - ./gradlew clean build
+jobs:
+  include:
+    - stage: ktlint
+      script: ./gradlew ktlintCheck
+    - stage: build
+      script: ./gradlew clean build
 
 before_install:
   - mkdir "$ANDROID_HOME/licenses" || true
