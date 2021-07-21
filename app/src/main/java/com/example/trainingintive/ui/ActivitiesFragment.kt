@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.trainingintive.MyApplication
 import com.example.trainingintive.databinding.FragmentActivitiesBinding
+import com.example.trainingintive.viewmodels.ActivitiesViewModel
 import javax.inject.Inject
 
 class ActivitiesFragment : Fragment() {
@@ -29,8 +30,16 @@ class ActivitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentActivitiesBinding.inflate(inflater, container, false)
+        binding.viewmodel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         val recyclerView = binding.recyclerView
-        adapter.activities = viewModel.activities
+        val adapter = ActivityModelAdapter()
+        viewModel.activities.observe(
+            viewLifecycleOwner,
+            {
+                adapter.activities = it
+            }
+        )
         recyclerView.adapter = adapter
         return binding.root
     }
