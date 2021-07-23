@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.trainingintive.viewmodels.ActivitiesViewModel
 import com.example.trainingintive.viewmodels.DogImageViewModel
+import com.example.trainingintive.viewmodels.MainViewModel
 import com.example.trainingintive.viewmodels.SplashViewModel
 import dagger.Binds
 import dagger.Module
@@ -28,4 +29,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DogImageViewModel::class)
     abstract fun dogImageViewModel(viewModel: DogImageViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel::class)
+    abstract fun mainViewModel(viewModel: MainViewModel): ViewModel
 }

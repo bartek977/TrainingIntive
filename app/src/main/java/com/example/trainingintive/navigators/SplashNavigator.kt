@@ -2,35 +2,31 @@ package com.example.trainingintive.navigators
 
 import android.content.Intent
 import com.example.trainingintive.MainActivity
-import com.example.trainingintive.firebase.FirebaseUserLiveData
 import com.example.trainingintive.util.Event
 import com.example.trainingintive.util.SplashScreenEvent
 import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
 import javax.inject.Inject
 import javax.inject.Singleton
 
+const val SIGN_IN_RESULT_CODE = 1001
+
 @Singleton
-class SplashNavigator @Inject constructor(private val firebaseUserLiveData: FirebaseUserLiveData) : Navigator() {
+class SplashNavigator @Inject constructor() : Navigator() {
 
     override fun action(event: Event) {
         when (event) {
-            is SplashScreenEvent.DisplayUserScreen -> observeUserStateAndDisplayLoginOrMainScreen()
+            is SplashScreenEvent.DisplayUserScreen -> checkIfUserIsLoggedAndDisplayMainOrLoginScreen()
             is SplashScreenEvent.Error -> finishActivity()
         }
     }
 
-    private fun observeUserStateAndDisplayLoginOrMainScreen() {
-        activity?.let {
-            firebaseUserLiveData.observe(
-                it,
-                { user ->
-                    if (user == null) {
-                        launchSignInFlow()
-                    } else {
-                        navigateToMainActivity()
-                    }
-                }
-            )
+    private fun checkIfUserIsLoggedAndDisplayMainOrLoginScreen() {
+
+        if (isUserLogged()) {
+            navigateToMainActivity()
+        } else {
+            launchSignInFlow()
         }
     }
 
@@ -39,20 +35,19 @@ class SplashNavigator @Inject constructor(private val firebaseUserLiveData: Fire
         finishActivity()
     }
 
-    private fun finishActivity() {
-        activity?.finish()
-    }
-
     private fun launchSignInFlow() {
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build()
         )
-        activity?.startActivity(
+        activity?.startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
-                .build()
+                .build(),
+            SIGN_IN_RESULT_CODE
         )
     }
+
+    private fun isUserLogged() = FirebaseAuth.getInstance().currentUser != null
 }
