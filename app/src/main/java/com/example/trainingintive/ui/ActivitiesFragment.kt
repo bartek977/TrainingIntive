@@ -5,19 +5,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.trainingintive.MyApplication
 import com.example.trainingintive.databinding.FragmentActivitiesBinding
+import com.example.trainingintive.repository.RepositoryImpl
+import com.example.trainingintive.repository.network.NetworkRepository
 import com.example.trainingintive.viewmodels.ActivitiesViewModel
+import com.example.trainingintive.viewmodels.ActivitiesViewModelFactory
 import javax.inject.Inject
 
 class ActivitiesFragment : Fragment() {
 
     @Inject
-    lateinit var adapter: ActivityModelAdapter
+    lateinit var networkRepository: NetworkRepository
 
-    private val viewModel: ActivitiesViewModel by viewModels()
+    @Inject
+    lateinit var adapter: ActivityModelAdapter
 
     override fun onAttach(context: Context) {
         (requireActivity().application as MyApplication).appComponent.inject(this)
@@ -28,8 +33,15 @@ class ActivitiesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentActivitiesBinding.inflate(inflater, container, false)
+        val viewModel: ActivitiesViewModel by viewModels {
+            ActivitiesViewModelFactory(
+                RepositoryImpl(
+                    networkRepository
+                )
+            )
+        }
         binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         val recyclerView = binding.recyclerView
