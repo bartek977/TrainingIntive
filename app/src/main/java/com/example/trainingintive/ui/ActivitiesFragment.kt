@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.trainingintive.MyApplication
 import com.example.trainingintive.databinding.FragmentActivitiesBinding
+import com.example.trainingintive.di.ViewModelFactory
 import com.example.trainingintive.viewmodels.ActivitiesViewModel
 import javax.inject.Inject
 
@@ -17,7 +18,8 @@ class ActivitiesFragment : Fragment() {
     @Inject
     lateinit var adapter: ActivityModelAdapter
 
-    private val viewModel: ActivitiesViewModel by viewModels()
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     override fun onAttach(context: Context) {
         (requireActivity().application as MyApplication).appComponent.inject(this)
@@ -28,8 +30,9 @@ class ActivitiesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentActivitiesBinding.inflate(inflater, container, false)
+        val viewModel = ViewModelProvider(this, viewModelFactory)[ActivitiesViewModel::class.java]
         binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         val recyclerView = binding.recyclerView
