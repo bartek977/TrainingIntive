@@ -50,6 +50,9 @@ ext {
     leakcanary_version = "2.7"
     dagger_version = "2.37"
     rxjava_version = "3.0.0"
+    retrofit_version = "2.9.0"
+    moshi_version = "1.12.0"
+    moshi_converter_version = "2.9.0"
     firebase_auth_version = "6.4.0"
 }
 
@@ -72,6 +75,13 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxandroid:$rxjava_version"
     implementation "io.reactivex.rxjava3:rxjava:$rxjava_version"
 
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
+
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+
+    implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
+    
     implementation "com.firebaseui:firebase-ui-auth:$firebase_auth_version"
 
     testImplementation "junit:junit:$junit_version"

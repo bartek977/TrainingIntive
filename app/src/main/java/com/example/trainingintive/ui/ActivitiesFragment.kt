@@ -21,6 +21,8 @@ class ActivitiesFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
+    val viewModel: ActivitiesViewModel by lazy { ViewModelProvider(this, viewModelFactory)[ActivitiesViewModel::class.java] }
+
     override fun onAttach(context: Context) {
         (requireActivity().application as MyApplication).appComponent.inject(this)
         super.onAttach(context)
@@ -32,11 +34,10 @@ class ActivitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentActivitiesBinding.inflate(inflater, container, false)
-        val viewModel = ViewModelProvider(this, viewModelFactory)[ActivitiesViewModel::class.java]
         binding.viewmodel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         val recyclerView = binding.recyclerView
-        val adapter = ActivityModelAdapter()
+        val adapter = adapter
         viewModel.activities.observe(
             viewLifecycleOwner,
             {
