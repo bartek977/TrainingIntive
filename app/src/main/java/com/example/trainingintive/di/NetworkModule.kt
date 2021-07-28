@@ -1,5 +1,6 @@
 package com.example.trainingintive.di
 
+import com.example.trainingintive.repository.network.ActivityApiService
 import com.example.trainingintive.repository.network.DogImageApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -11,17 +12,16 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 private const val DOG_IMAGE_BASE_URL = "https://dog.ceo"
+private const val ACTIVITY_BASE_URL = "https://www.boredapi.com"
 
 @Module
 class NetworkModule {
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(moshi: Moshi): Retrofit {
+    fun provideRetrofit(moshi: Moshi, baseUrl: String): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .baseUrl(DOG_IMAGE_BASE_URL)
+            .baseUrl(baseUrl)
             .build()
     }
 
@@ -33,9 +33,25 @@ class NetworkModule {
             .build()
     }
 
+    @Provides
+    @Singleton
+    @DogImageUrlRetrofit
+    fun provideRetrofitForDogImageApiService(moshi: Moshi): Retrofit = provideRetrofit(moshi, DOG_IMAGE_BASE_URL)
+
+    @Provides
+    @Singleton
+    @ActivityRetrofit
+    fun provideRetrofitForActivityApiService(moshi: Moshi): Retrofit = provideRetrofit(moshi, ACTIVITY_BASE_URL)
+
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): DogImageApiService {
+    fun provideDogImageApiService(@DogImageUrlRetrofit retrofit: Retrofit): DogImageApiService {
         return retrofit.create(DogImageApiService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideActivityApiService(@ActivityRetrofit retrofit: Retrofit): ActivityApiService {
+        return retrofit.create(ActivityApiService::class.java)
     }
 }
