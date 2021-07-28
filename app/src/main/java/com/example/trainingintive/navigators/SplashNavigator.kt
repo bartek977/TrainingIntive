@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SplashNavigator @Inject constructor() : Navigator() {
+class SplashNavigator @Inject constructor(private val firebaseUserLiveData: FirebaseUserLiveData) : Navigator() {
 
     override fun action(event: Event) {
         when (event) {
@@ -21,7 +21,7 @@ class SplashNavigator @Inject constructor() : Navigator() {
 
     private fun observeUserStateAndDisplayLoginOrMainScreen() {
         activity?.let {
-            FirebaseUserLiveData().observe(
+            firebaseUserLiveData.observe(
                 it,
                 { user ->
                     if (user == null) {
