@@ -2,8 +2,10 @@ package com.example.trainingintive.navigators
 
 import android.content.Intent
 import com.example.trainingintive.MainActivity
+import com.example.trainingintive.firebase.FirebaseUserLiveData
 import com.example.trainingintive.util.Event
 import com.example.trainingintive.util.SplashScreenEvent
+import com.firebase.ui.auth.AuthUI
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -12,8 +14,23 @@ class SplashNavigator @Inject constructor() : Navigator() {
 
     override fun action(event: Event) {
         when (event) {
-            is SplashScreenEvent.DisplayUserScreen -> navigateToMainActivity()
+            is SplashScreenEvent.DisplayUserScreen -> observeUserStateAndDisplayLoginOrMainScreen()
             is SplashScreenEvent.Error -> finishActivity()
+        }
+    }
+
+    private fun observeUserStateAndDisplayLoginOrMainScreen() {
+        activity?.let {
+            FirebaseUserLiveData().observe(
+                it,
+                { user ->
+                    if (user == null) {
+                        launchSignInFlow()
+                    } else {
+                        navigateToMainActivity()
+                    }
+                }
+            )
         }
     }
 
@@ -24,5 +41,18 @@ class SplashNavigator @Inject constructor() : Navigator() {
 
     private fun finishActivity() {
         activity?.finish()
+    }
+
+    private fun launchSignInFlow() {
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build(),
+            AuthUI.IdpConfig.GoogleBuilder().build()
+        )
+        activity?.startActivity(
+            AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build()
+        )
     }
 }

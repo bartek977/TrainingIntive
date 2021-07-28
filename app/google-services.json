@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "977691878180",
+    "project_id": "intive-training",
+    "storage_bucket": "intive-training.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977691878180:android:d9c159043aac2e196189b1",
+        "android_client_info": {
+          "package_name": "com.example.trainingintive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977691878180-7j80pdgeu56h5ofgccmsin8pa8pmc8fv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trainingintive",
+            "certificate_hash": "967e45e9cea0c482e8dd3afcad2cee24a3dd30f4"
+          }
+        },
+        {
+          "client_id": "977691878180-a9s9r7fekc50d1is9b7r77kc949foa8i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtQISfuUD_K5YutDo03tkJtRH_Q05aPB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977691878180-a9s9r7fekc50d1is9b7r77kc949foa8i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
