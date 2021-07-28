@@ -11,6 +11,7 @@ import com.example.trainingintive.MyApplication
 import com.example.trainingintive.databinding.FragmentActivitiesBinding
 import com.example.trainingintive.di.ViewModelFactory
 import com.example.trainingintive.viewmodels.ActivitiesViewModel
+import com.example.trainingintive.viewmodels.DogImageViewModel
 import javax.inject.Inject
 
 class ActivitiesFragment : Fragment() {
@@ -21,7 +22,8 @@ class ActivitiesFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    val viewModel: ActivitiesViewModel by lazy { ViewModelProvider(this, viewModelFactory)[ActivitiesViewModel::class.java] }
+    val activitiesViewModel: ActivitiesViewModel by lazy { ViewModelProvider(this, viewModelFactory)[ActivitiesViewModel::class.java] }
+    val dogImageViewModel: DogImageViewModel by lazy { ViewModelProvider(this, viewModelFactory)[DogImageViewModel::class.java] }
 
     override fun onAttach(context: Context) {
         (requireActivity().application as MyApplication).appComponent.inject(this)
@@ -34,11 +36,12 @@ class ActivitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentActivitiesBinding.inflate(inflater, container, false)
-        binding.viewmodel = viewModel
+        binding.activitiesViewmodel = activitiesViewModel
+        binding.dogImageViewmodel = dogImageViewModel
         binding.lifecycleOwner = viewLifecycleOwner
         val recyclerView = binding.recyclerView
         val adapter = adapter
-        viewModel.activities.observe(
+        activitiesViewModel.activities.observe(
             viewLifecycleOwner,
             {
                 adapter.activities = it
