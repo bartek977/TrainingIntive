@@ -6,5 +6,5 @@ import com.example.trainingintive.di.DaggerAppComponent
 
 class MyApplication : Application() {
 
-    val appComponent: AppComponent by lazy { DaggerAppComponent.create() }
+    val appComponent: AppComponent by lazy { DaggerAppComponent.factory().create(applicationContext) }
 }
