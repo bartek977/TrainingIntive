@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
     app:startDestination="@id/activitiesFragment">
@@ -8,6 +8,11 @@
     <fragment
         android:id="@+id/activitiesFragment"
         android:name="com.example.trainingintive.ui.ActivitiesFragment"
-        android:label="fragment_activities"
+        android:label="@string/fragment_activities_label"
         tools:layout="@layout/fragment_activities" />
+    <fragment
+        android:id="@+id/dogImagesFragment"
+        android:name="com.example.trainingintive.ui.DogImagesFragment"
+        android:label="@string/fragment_dog_images_label"
+        tools:layout="@layout/fragment_dog_images" />
 </navigation>

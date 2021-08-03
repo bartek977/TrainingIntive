@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/activitiesFragment"
+        android:title="@string/activities_tab_title"
+        android:icon="@drawable/activity_icon"/>
+    <item
+        android:id="@+id/dogImagesFragment"
+        android:title="@string/dogs_tab_title"
+        android:icon="@drawable/image_icon"/>
+
+</menu>

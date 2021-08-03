@@ -8,20 +8,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.trainingintive.MyApplication
-import com.example.trainingintive.databinding.FragmentActivitiesBinding
+import com.example.trainingintive.databinding.FragmentDogImagesBinding
 import com.example.trainingintive.di.ViewModelFactory
-import com.example.trainingintive.viewmodels.ActivitiesViewModel
+import com.example.trainingintive.viewmodels.DogImageViewModel
 import javax.inject.Inject
 
-class ActivitiesFragment : Fragment() {
-
-    @Inject
-    lateinit var adapter: ActivityModelAdapter
+class DogImagesFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    val activitiesViewModel: ActivitiesViewModel by lazy { ViewModelProvider(this, viewModelFactory)[ActivitiesViewModel::class.java] }
+    val dogImageViewModel: DogImageViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[DogImageViewModel::class.java]
+    }
 
     override fun onAttach(context: Context) {
         (requireActivity().application as MyApplication).appComponent.inject(this)
@@ -33,18 +32,9 @@ class ActivitiesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentActivitiesBinding.inflate(inflater, container, false)
-        binding.activitiesViewmodel = activitiesViewModel
+        val binding = FragmentDogImagesBinding.inflate(inflater, container, false)
+        binding.dogImageViewmodel = dogImageViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        val recyclerView = binding.recyclerView
-        val adapter = adapter
-        activitiesViewModel.activities.observe(
-            viewLifecycleOwner,
-            {
-                adapter.activities = it
-            }
-        )
-        recyclerView.adapter = adapter
         return binding.root
     }
 }
