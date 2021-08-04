@@ -2,7 +2,7 @@ package com.example.trainingintive.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.example.trainingintive.navigators.SplashNavigator
-import com.example.trainingintive.repository.Schedulers
+import com.example.trainingintive.repository.SchedulersProvider
 import com.example.trainingintive.util.SplashScreenEvent
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(
     private val navigator: SplashNavigator,
-    private val schedulers: Schedulers
+    private val schedulers: SchedulersProvider
 ) : ViewModel() {
 
     private val downloadData: Disposable
