@@ -7,7 +7,7 @@ import com.example.trainingintive.util.Event
 abstract class Navigator {
 
     protected var activity: AppCompatActivity? = null
-    private val event = MutableLiveData<Event>()
+    private val event = MutableLiveData<Event>(Event.Nothing)
 
     fun attachActivity(activity: AppCompatActivity) {
         this.activity = activity
@@ -19,12 +19,21 @@ abstract class Navigator {
         )
     }
 
-    fun detachActivity() {
+    fun detachActivityAndResetEvent() {
         activity = null
+        resetEvent()
     }
 
     fun sendEvent(event: Event) {
-        this.event.postValue(event)
+        this.event.value = event
+    }
+
+    protected fun finishActivity() {
+        activity?.finish()
+    }
+
+    private fun resetEvent() {
+        event.value = Event.Nothing
     }
 
     abstract fun action(event: Event)

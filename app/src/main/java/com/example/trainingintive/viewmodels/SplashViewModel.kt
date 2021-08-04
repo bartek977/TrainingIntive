@@ -16,8 +16,8 @@ class SplashViewModel @Inject constructor(private val navigator: SplashNavigator
 
     init {
         downloadData = Single.timer(5, TimeUnit.SECONDS)
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .observeOn(Schedulers.io())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { navigator.sendEvent(SplashScreenEvent.DisplayUserScreen) },
                 { navigator.sendEvent(SplashScreenEvent.Error) }
@@ -27,5 +27,13 @@ class SplashViewModel @Inject constructor(private val navigator: SplashNavigator
     override fun onCleared() {
         super.onCleared()
         downloadData.dispose()
+    }
+
+    fun onSuccesLogin() {
+        navigator.sendEvent(SplashScreenEvent.DisplayUserScreen)
+    }
+
+    fun onFailedLogin() {
+        navigator.sendEvent(SplashScreenEvent.Error)
     }
 }
