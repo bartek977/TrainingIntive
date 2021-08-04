@@ -4,8 +4,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
-open class Schedulers @Inject constructor() {
+open class SchedulersProvider @Inject constructor() {
 
-    fun io() = Schedulers.io()
-    fun ui() = AndroidSchedulers.mainThread()
+    open fun io() = Schedulers.io()
+    open fun ui() = AndroidSchedulers.mainThread()
 }

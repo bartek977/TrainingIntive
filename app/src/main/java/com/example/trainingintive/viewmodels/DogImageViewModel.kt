@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.trainingintive.model.DogImageUrl
 import com.example.trainingintive.repository.DogImageRepository
-import com.example.trainingintive.repository.Schedulers
+import com.example.trainingintive.repository.SchedulersProvider
 import com.example.trainingintive.util.plusAssign
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class DogImageViewModel @Inject constructor(
     private val repository: DogImageRepository,
-    private val schedulers: Schedulers
+    private val schedulers: SchedulersProvider
 ) : ViewModel() {
 
     private val _dog = MutableLiveData<String>()
