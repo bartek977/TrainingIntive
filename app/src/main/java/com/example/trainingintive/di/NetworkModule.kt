@@ -1,7 +1,7 @@
 package com.example.trainingintive.di
 
-import com.example.trainingintive.repository.network.ActivityApiService
 import com.example.trainingintive.repository.network.DogImageApiService
+import com.example.trainingintive.what_to_do_feature.data.network.ActivityApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

@@ -3,14 +3,15 @@ package com.example.trainingintive.di
 import android.content.Context
 import com.example.trainingintive.MainActivity
 import com.example.trainingintive.SplashActivity
-import com.example.trainingintive.ui.ActivitiesFragment
 import com.example.trainingintive.ui.DogImagesFragment
+import com.example.trainingintive.what_to_do_feature.di.RepositoryModule
+import com.example.trainingintive.what_to_do_feature.presentation.ActivitiesFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ViewModelModule::class, NetworkModule::class, RoomModule::class])
+@Component(modules = [ViewModelModule::class, NetworkModule::class, RoomModule::class, RepositoryModule::class])
 interface AppComponent {
 
     @Component.Factory

@@ -1,15 +1,15 @@
-package com.example.trainingintive.viewmodels
+package com.example.trainingintive.what_to_do_feature.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.trainingintive.model.ActivityModel
-import com.example.trainingintive.repository.ActivityRepository
 import com.example.trainingintive.repository.SchedulersProvider
+import com.example.trainingintive.what_to_do_feature.domain.model.ActivityModel
+import com.example.trainingintive.what_to_do_feature.domain.usecase.GetActivityUseCase
 import javax.inject.Inject
 
 class ActivitiesViewModel @Inject constructor(
-    private val activityRepository: ActivityRepository,
+    private val getActivityUseCase: GetActivityUseCase,
     private val schedulers: SchedulersProvider
 ) : ViewModel() {
 
@@ -17,7 +17,7 @@ class ActivitiesViewModel @Inject constructor(
     val activities: LiveData<List<ActivityModel>> = _activities
 
     fun getActivity() {
-        activityRepository.getActivity()
+        getActivityUseCase.execute()
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
             .subscribe(

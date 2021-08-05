@@ -1,4 +1,4 @@
-package com.example.trainingintive.ui
+package com.example.trainingintive.what_to_do_feature.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trainingintive.R
-import com.example.trainingintive.model.ActivityModel
+import com.example.trainingintive.what_to_do_feature.domain.model.ActivityModel
 import javax.inject.Inject
 
 class ActivityModelAdapter @Inject constructor() : RecyclerView.Adapter<ActivityModelAdapter.ItemViewHolder>() {
