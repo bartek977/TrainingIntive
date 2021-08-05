@@ -1,2 +1,3 @@
 rootProject.name = "TrainingIntive"
 include ':app'
+include ':what_to_do_feature'
