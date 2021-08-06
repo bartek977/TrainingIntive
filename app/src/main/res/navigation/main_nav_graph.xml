@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/activitiesFragment"
-        android:name="com.example.trainingintive.ui.ActivitiesFragment"
+        android:name="com.example.trainingintive.what_to_do_feature.presentation.ActivitiesFragment"
         android:label="@string/fragment_activities_label"
         tools:layout="@layout/fragment_activities" />
     <fragment

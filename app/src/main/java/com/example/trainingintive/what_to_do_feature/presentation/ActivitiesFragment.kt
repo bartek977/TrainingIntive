@@ -1,4 +1,4 @@
-package com.example.trainingintive.ui
+package com.example.trainingintive.what_to_do_feature.presentation
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.trainingintive.MyApplication
 import com.example.trainingintive.databinding.FragmentActivitiesBinding
 import com.example.trainingintive.di.ViewModelFactory
-import com.example.trainingintive.viewmodels.ActivitiesViewModel
 import javax.inject.Inject
 
 class ActivitiesFragment : Fragment() {

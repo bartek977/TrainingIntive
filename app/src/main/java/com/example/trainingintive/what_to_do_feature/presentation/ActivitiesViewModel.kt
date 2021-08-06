@@ -1,11 +1,11 @@
-package com.example.trainingintive.viewmodels
+package com.example.trainingintive.what_to_do_feature.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.trainingintive.model.ActivityModel
-import com.example.trainingintive.repository.ActivityRepository
 import com.example.trainingintive.repository.SchedulersProvider
+import com.example.trainingintive.what_to_do_feature.data.repository.ActivityRepository
+import com.example.trainingintive.what_to_do_feature.domain.model.ActivityModel
 import javax.inject.Inject
 
 class ActivitiesViewModel @Inject constructor(

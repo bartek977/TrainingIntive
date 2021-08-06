@@ -2,10 +2,10 @@ package com.example.trainingintive.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.trainingintive.viewmodels.ActivitiesViewModel
 import com.example.trainingintive.viewmodels.DogImageViewModel
 import com.example.trainingintive.viewmodels.MainViewModel
 import com.example.trainingintive.viewmodels.SplashViewModel
+import com.example.trainingintive.what_to_do_feature.presentation.ActivitiesViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

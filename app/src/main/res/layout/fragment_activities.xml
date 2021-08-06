@@ -6,13 +6,13 @@
     <data>
         <variable
             name="activitiesViewmodel"
-            type="com.example.trainingintive.viewmodels.ActivitiesViewModel" />
+            type="com.example.trainingintive.what_to_do_feature.presentation.ActivitiesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.ActivitiesFragment">
+        tools:context=".what_to_do_feature.presentation.ActivitiesFragment">
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/download_button"
