@@ -7,5 +7,7 @@ import javax.inject.Inject
 
 class ActivityRepository @Inject constructor(private val activityApiService: ActivityApiService) {
 
-    fun getActivity(): Single<ActivityModel> = activityApiService.getActivity()
+    fun getActivity(): Single<ActivityModel> =
+        activityApiService.getActivity()
+            .map { it.toDomain() }
 }
