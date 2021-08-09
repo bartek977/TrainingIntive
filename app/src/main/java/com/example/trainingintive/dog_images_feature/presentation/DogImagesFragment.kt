@@ -1,4 +1,4 @@
-package com.example.trainingintive.ui
+package com.example.trainingintive.dog_images_feature.presentation
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.trainingintive.MyApplication
 import com.example.trainingintive.databinding.FragmentDogImagesBinding
 import com.example.trainingintive.di.ViewModelFactory
-import com.example.trainingintive.viewmodels.DogImageViewModel
 import javax.inject.Inject
 
 class DogImagesFragment : Fragment() {
