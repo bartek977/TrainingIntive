@@ -1,8 +1,8 @@
-package com.example.trainingintive.viewmodels
+package com.example.trainingintive.presentation
 
 import androidx.lifecycle.ViewModel
 import com.example.trainingintive.navigators.SplashNavigator
-import com.example.trainingintive.repository.SchedulersProvider
+import com.example.trainingintive.rx.SchedulersProvider
 import com.example.trainingintive.util.SplashScreenEvent
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.Disposable

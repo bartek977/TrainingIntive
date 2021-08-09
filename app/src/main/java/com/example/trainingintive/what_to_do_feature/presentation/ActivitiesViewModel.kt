@@ -3,7 +3,7 @@ package com.example.trainingintive.what_to_do_feature.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.trainingintive.repository.SchedulersProvider
+import com.example.trainingintive.rx.SchedulersProvider
 import com.example.trainingintive.what_to_do_feature.domain.model.ActivityModel
 import com.example.trainingintive.what_to_do_feature.domain.usecase.GetActivityUseCase
 import javax.inject.Inject

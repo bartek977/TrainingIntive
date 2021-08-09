@@ -3,8 +3,8 @@ package com.example.trainingintive.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.trainingintive.dog_images_feature.presentation.DogImageViewModel
-import com.example.trainingintive.viewmodels.MainViewModel
-import com.example.trainingintive.viewmodels.SplashViewModel
+import com.example.trainingintive.presentation.MainViewModel
+import com.example.trainingintive.presentation.SplashViewModel
 import com.example.trainingintive.what_to_do_feature.presentation.ActivitiesViewModel
 import dagger.Binds
 import dagger.Module

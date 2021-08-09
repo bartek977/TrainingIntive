@@ -1,7 +1,7 @@
 package com.example.trainingintive.navigators
 
 import android.content.Intent
-import com.example.trainingintive.MainActivity
+import com.example.trainingintive.presentation.MainActivity
 import com.example.trainingintive.util.Event
 import com.example.trainingintive.util.SplashScreenEvent
 import com.firebase.ui.auth.AuthUI

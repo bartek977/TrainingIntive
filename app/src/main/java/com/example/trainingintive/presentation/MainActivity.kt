@@ -1,4 +1,4 @@
-package com.example.trainingintive
+package com.example.trainingintive.presentation
 
 import android.os.Bundle
 import android.view.Menu
@@ -8,9 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.trainingintive.MyApplication
+import com.example.trainingintive.R
 import com.example.trainingintive.di.ViewModelFactory
 import com.example.trainingintive.navigators.MainNavigator
-import com.example.trainingintive.viewmodels.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
 
