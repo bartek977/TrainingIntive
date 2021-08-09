@@ -1,4 +1,4 @@
-package com.example.trainingintive.model
+package com.example.trainingintive.dog_images_feature.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

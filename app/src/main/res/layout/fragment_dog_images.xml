@@ -6,13 +6,13 @@ xmlns:tools="http://schemas.android.com/tools">
 <data>
     <variable
         name="dogImageViewmodel"
-        type="com.example.trainingintive.viewmodels.DogImageViewModel" />
+        type="com.example.trainingintive.dog_images_feature.presentation.DogImageViewModel" />
 </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.DogImagesFragment">
+    tools:context=".dog_images_feature.presentation.DogImagesFragment">
 
     <ImageView
         android:id="@+id/imageView"
