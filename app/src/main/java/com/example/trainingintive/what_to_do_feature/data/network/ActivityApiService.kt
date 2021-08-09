@@ -1,6 +1,6 @@
-package com.example.trainingintive.repository.network
+package com.example.trainingintive.what_to_do_feature.data.network
 
-import com.example.trainingintive.model.ActivityModel
+import com.example.trainingintive.what_to_do_feature.domain.model.ActivityModel
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 
