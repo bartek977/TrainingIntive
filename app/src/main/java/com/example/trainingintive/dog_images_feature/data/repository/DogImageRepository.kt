@@ -1,8 +1,8 @@
 package com.example.trainingintive.dog_images_feature.data.repository
 
-import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
 import com.example.trainingintive.dog_images_feature.data.local.DogImageDao
 import com.example.trainingintive.dog_images_feature.data.network.DogImageApiService
+import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
@@ -13,7 +13,9 @@ class DogImageRepository @Inject constructor(
     private val dogImageDao: DogImageDao
 ) {
 
-    fun getDogImageUrl(): Single<DogImageUrl> = dogImageApiService.getDogImage()
+    fun getDogImageUrl(): Single<DogImageUrl> =
+        dogImageApiService.getDogImage()
+            .map { it.toDomain() }
 
     fun getAllImageUrlsFromLocalDatabase(): Flowable<List<DogImageUrl>> = dogImageDao.getAllImageUrls()
 
