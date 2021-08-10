@@ -2,9 +2,9 @@ package com.example.trainingintive.viewmodels
 
 import com.example.trainingintive.RulesForTests
 import com.example.trainingintive.TestSchedulersProvider
-import com.example.trainingintive.dog_images_feature.presentation.DogImageViewModel
-import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
 import com.example.trainingintive.dog_images_feature.data.repository.DogImageRepository
+import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
+import com.example.trainingintive.dog_images_feature.presentation.DogImageViewModel
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

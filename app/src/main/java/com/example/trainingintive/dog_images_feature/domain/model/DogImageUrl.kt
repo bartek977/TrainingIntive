@@ -8,6 +8,5 @@ import com.squareup.moshi.Json
 data class DogImageUrl(
     @PrimaryKey
     @Json(name = "message")
-    val url: String,
-    val status: String
+    val url: String
 )

@@ -19,7 +19,9 @@ class RoomModule {
             context.applicationContext,
             ApplicationDatabase::class.java,
             DATABASE_NAME
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
 
     @Provides
     @Singleton
