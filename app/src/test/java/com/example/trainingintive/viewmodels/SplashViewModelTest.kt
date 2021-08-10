@@ -2,6 +2,7 @@ package com.example.trainingintive.viewmodels
 
 import com.example.trainingintive.TestSchedulersProvider
 import com.example.trainingintive.navigators.SplashNavigator
+import com.example.trainingintive.presentation.SplashViewModel
 import com.example.trainingintive.util.SplashScreenEvent
 import io.mockk.mockk
 import io.mockk.verify

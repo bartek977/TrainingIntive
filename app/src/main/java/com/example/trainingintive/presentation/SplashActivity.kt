@@ -1,14 +1,14 @@
-package com.example.trainingintive
+package com.example.trainingintive.presentation
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.trainingintive.MyApplication
 import com.example.trainingintive.di.ViewModelFactory
 import com.example.trainingintive.navigators.SIGN_IN_RESULT_CODE
 import com.example.trainingintive.navigators.SplashNavigator
-import com.example.trainingintive.viewmodels.SplashViewModel
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {

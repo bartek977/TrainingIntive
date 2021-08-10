@@ -1,4 +1,4 @@
-package com.example.trainingintive.viewmodels
+package com.example.trainingintive.presentation
 
 import androidx.lifecycle.ViewModel
 import com.example.trainingintive.navigators.MainNavigator

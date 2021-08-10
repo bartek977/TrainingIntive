@@ -2,7 +2,7 @@ package com.example.trainingintive.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.trainingintive.repository.local.ApplicationDatabase
+import com.example.trainingintive.data.ApplicationDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

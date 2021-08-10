@@ -1,4 +1,4 @@
-package com.example.trainingintive.repository.local
+package com.example.trainingintive.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

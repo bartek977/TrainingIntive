@@ -1,6 +1,6 @@
 package com.example.trainingintive
 
-import com.example.trainingintive.repository.SchedulersProvider
+import com.example.trainingintive.rx.SchedulersProvider
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class TestSchedulersProvider : SchedulersProvider() {
