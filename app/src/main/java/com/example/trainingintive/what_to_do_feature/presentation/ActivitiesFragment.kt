@@ -15,7 +15,7 @@ import javax.inject.Inject
 class ActivitiesFragment : Fragment() {
 
     @Inject
-    lateinit var adapter: ActivityModelAdapter
+    lateinit var adapter: ActivityModelRxAdapter
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -40,7 +40,7 @@ class ActivitiesFragment : Fragment() {
         activitiesViewModel.activities.observe(
             viewLifecycleOwner,
             {
-                adapter.activities = it
+                adapter.submitData(lifecycle, it)
             }
         )
         recyclerView.adapter = adapter

@@ -14,16 +14,6 @@
         android:layout_height="match_parent"
         tools:context=".what_to_do_feature.presentation.ActivitiesFragment">
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/download_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/add_activity"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:onClick="@{() -> activitiesViewmodel.getActivity()}"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
