@@ -10,5 +10,7 @@ sealed class SplashScreenEvent : Event {
 }
 
 sealed class MainScreenEvent : Event {
+    class Error(val messageId: Int) : Event
+
     object Logout : MainScreenEvent()
 }

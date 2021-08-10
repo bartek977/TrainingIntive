@@ -7,4 +7,6 @@
     <string name="fragment_activities_label">fragment_activities</string>
     <string name="fragment_dog_images_label">fragment_dog_images</string>
     <string name="logout">Wyloguj</string>
+    <string name="internet_connection_error">Błąd pobierania danych. Sprawdź połączenie internetowe.</string>
+    <string name="unkonwn_error">Nieznany błąd</string>
 </resources>
