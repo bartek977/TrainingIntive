@@ -1,11 +1,9 @@
 package com.example.trainingintive.dog_images_feature.data.repository
 
+import com.example.trainingintive.dog_images_feature.data.entity.toDatabaseEntity
 import com.example.trainingintive.dog_images_feature.data.local.DogImageDao
 import com.example.trainingintive.dog_images_feature.data.network.DogImageApiService
 import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
-import io.reactivex.rxjava3.core.Completable
-import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
 class DogImageRepository @Inject constructor(
@@ -13,11 +11,17 @@ class DogImageRepository @Inject constructor(
     private val dogImageDao: DogImageDao
 ) {
 
-    fun getDogImageUrl(): Single<DogImageUrl> =
+    fun getDogImageUrl() =
         dogImageApiService.getDogImage()
             .map { it.toDomain() }
 
-    fun getAllImageUrlsFromLocalDatabase(): Flowable<List<DogImageUrl>> = dogImageDao.getAllImageUrls()
+    fun getAllImageUrls() =
+        dogImageDao.getAllImageUrls()
+            .map { it.map { it.toDomain() } }
 
-    fun insertIntoLocalDatabase(dogImageUrl: DogImageUrl): Completable = dogImageDao.insert(dogImageUrl)
+    fun insert(imageUrl: DogImageUrl) = dogImageDao.insert(imageUrl.toDatabaseEntity())
+
+    fun update(imageUrl: DogImageUrl) = dogImageDao.update(imageUrl.toDatabaseEntity())
+
+    fun remove(imageUrl: DogImageUrl) = dogImageDao.remove(imageUrl.toDatabaseEntity())
 }

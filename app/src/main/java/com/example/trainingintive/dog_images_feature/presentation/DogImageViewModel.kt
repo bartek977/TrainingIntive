@@ -46,7 +46,7 @@ class DogImageViewModel @Inject constructor(
 
     private fun insertDogImageIntoLocalDatabase(dogImageUrl: DogImageUrl) {
         disposables +=
-            repository.insertIntoLocalDatabase(dogImageUrl)
+            repository.insert(dogImageUrl)
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())
                 .subscribe()
