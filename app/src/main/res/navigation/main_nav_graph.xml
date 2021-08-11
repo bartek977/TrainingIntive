@@ -15,4 +15,9 @@
         android:name="com.example.trainingintive.dog_images_feature.presentation.DogImagesFragment"
         android:label="@string/fragment_dog_images_label"
         tools:layout="@layout/fragment_dog_images" />
+    <fragment
+        android:id="@+id/albumFragment"
+        android:name="com.example.trainingintive.dog_images_feature.presentation.AlbumFragment"
+        android:label="@string/fragment_album_label"
+        tools:layout="@layout/fragment_album" />
 </navigation>
