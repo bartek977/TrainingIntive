@@ -40,6 +40,10 @@ class AlbumFragment : Fragment() {
             recyclerView.adapter = adapter
             viewmodel = albumViewModel
         }
+        AlbumItemTouchHelper(
+            onMove = albumViewModel::changeImagePosition,
+            onSwiped = albumViewModel::removeImage
+        ).attachToRecyclerView(binding.recyclerView)
         return binding.root
     }
 }
