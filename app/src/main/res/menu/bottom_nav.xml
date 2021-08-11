@@ -9,5 +9,9 @@
         android:id="@+id/dogImagesFragment"
         android:title="@string/dogs_tab_title"
         android:icon="@drawable/image_icon"/>
+    <item
+        android:id="@+id/albumFragment"
+        android:title="@string/album_tab_title"
+        android:icon="@drawable/album_icon"/>
 
 </menu>

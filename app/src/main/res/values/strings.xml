@@ -3,10 +3,12 @@
     <string name="add_activity">Dodaj czynność</string>
     <string name="dog_image_description">zdjęcie pieseła</string>
     <string name="activities_tab_title">Aktywności</string>
-    <string name="dogs_tab_title">Pieski</string>
+    <string name="dogs_tab_title">Piesek</string>
     <string name="fragment_activities_label">fragment_activities</string>
     <string name="fragment_dog_images_label">fragment_dog_images</string>
     <string name="logout">Wyloguj</string>
     <string name="internet_connection_error">Błąd pobierania danych. Sprawdź połączenie internetowe.</string>
     <string name="unkonwn_error">Nieznany błąd</string>
+    <string name="fragment_album_label">fragment_album</string>
+    <string name="album_tab_title">Album</string>
 </resources>
