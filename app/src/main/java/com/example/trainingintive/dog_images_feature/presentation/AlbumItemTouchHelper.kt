@@ -18,14 +18,16 @@ class AlbumItemTouchHelper(
         ALL_DIRECTIONS,
         HORIZONTAL_DIRECTIONS
     ) {
+        private var dragFrom = -1
+        private var dragTo = -1
+
         override fun onMove(
             recyclerView: RecyclerView,
             viewHolder: RecyclerView.ViewHolder,
             target: RecyclerView.ViewHolder,
         ): Boolean {
-            val from = viewHolder.bindingAdapterPosition
-            val to = target.bindingAdapterPosition
-            onMove(from, to)
+            dragFrom = viewHolder.bindingAdapterPosition
+            dragTo = target.bindingAdapterPosition
             return true
         }
 
@@ -33,5 +35,20 @@ class AlbumItemTouchHelper(
             viewHolder: RecyclerView.ViewHolder,
             direction: Int,
         ) = onSwiped(viewHolder.bindingAdapterPosition)
+
+        override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+            super.clearView(recyclerView, viewHolder)
+            if (isDragDropEvent()) {
+                move(dragFrom, dragTo)
+            }
+            dragTo = -1
+            dragFrom = -1
+        }
+
+        private fun isDragDropEvent() = dragFrom != -1 && dragTo != -1 && dragFrom != dragTo
+
+        private fun move(dragFrom: Int, dragTo: Int) {
+            onMove(dragFrom, dragTo)
+        }
     }
 )

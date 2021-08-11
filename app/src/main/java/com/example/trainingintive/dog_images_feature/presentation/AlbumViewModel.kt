@@ -4,20 +4,26 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
+import com.example.trainingintive.dog_images_feature.domain.usecase.ChangeImagePositionsUseCase
 import com.example.trainingintive.dog_images_feature.domain.usecase.GetAllUrlsUseCase
 import com.example.trainingintive.dog_images_feature.domain.usecase.RemoveDogImageUseCase
 import com.example.trainingintive.navigators.MainNavigator
 import com.example.trainingintive.rx.SchedulersProvider
 import com.example.trainingintive.util.MainScreenEvent
+import com.example.trainingintive.util.plusAssign
 import com.example.trainingintive.util.toErrorTextId
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class AlbumViewModel @Inject constructor(
     private val getAllUrlsUseCase: GetAllUrlsUseCase,
     private val removeDogImageUseCase: RemoveDogImageUseCase,
+    private val changeImagePositionsUseCase: ChangeImagePositionsUseCase,
     private val schedulers: SchedulersProvider,
     private val navigator: MainNavigator
 ) : ViewModel() {
+
+    private val disposables = CompositeDisposable()
 
     private val _imageUrls = MutableLiveData<List<DogImageUrl>>(emptyList())
     val imageUrls: LiveData<List<DogImageUrl>> = _imageUrls
@@ -27,26 +33,40 @@ class AlbumViewModel @Inject constructor(
     }
 
     private fun getAllImages() {
-        getAllUrlsUseCase.execute()
-            .subscribeOn(schedulers.io())
-            .observeOn(schedulers.ui())
-            .subscribe(
-                { _imageUrls.value = it },
-                {
-                    navigator.sendEvent(
-                        MainScreenEvent.Error(it.toErrorTextId())
-                    )
-                }
-            )
+        disposables +=
+            getAllUrlsUseCase.execute()
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
+                .subscribe(
+                    { _imageUrls.value = it.sortedBy { it.position } },
+                    {
+                        navigator.sendEvent(
+                            MainScreenEvent.Error(it.toErrorTextId())
+                        )
+                    }
+                )
     }
-
-    fun changeImagePosition(from: Int, to: Int) {}
 
     fun removeImage(index: Int) {
         val imageUrl = _imageUrls.value!![index]
-        removeDogImageUseCase.execute(imageUrl)
-            .subscribeOn(schedulers.io())
-            .observeOn(schedulers.ui())
-            .subscribe()
+        disposables +=
+            removeDogImageUseCase.execute(imageUrl)
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
+                .subscribe()
+    }
+
+    fun changeImagePositionAndUpdateDb(from: Int, to: Int) {
+        println("change image position")
+        disposables +=
+            changeImagePositionsUseCase.execute(_imageUrls.value!!, from, to)
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
+                .subscribe()
+    }
+
+    override fun onCleared() {
+        disposables.dispose()
+        super.onCleared()
     }
 }
