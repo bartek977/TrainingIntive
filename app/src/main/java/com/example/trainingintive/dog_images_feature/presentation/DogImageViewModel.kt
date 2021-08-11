@@ -5,14 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.trainingintive.dog_images_feature.data.repository.DogImageRepository
 import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
+import com.example.trainingintive.navigators.MainNavigator
 import com.example.trainingintive.rx.SchedulersProvider
+import com.example.trainingintive.util.ErrorMessageId
+import com.example.trainingintive.util.MainScreenEvent
 import com.example.trainingintive.util.plusAssign
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import java.lang.Exception
 import javax.inject.Inject
 
 class DogImageViewModel @Inject constructor(
     private val repository: DogImageRepository,
-    private val schedulers: SchedulersProvider
+    private val schedulers: SchedulersProvider,
+    private val mainNavigator: MainNavigator
 ) : ViewModel() {
 
     private val _dog = MutableLiveData<String>()
@@ -30,7 +35,12 @@ class DogImageViewModel @Inject constructor(
                         _dog.postValue(dog.url)
                         insertDogImageIntoLocalDatabase(dog)
                     },
-                    { error -> _dog.postValue(error.localizedMessage) }
+                    {
+                        val errorMessageId = ErrorMessageId.getId(it as Exception)
+                        mainNavigator.sendEvent(
+                            MainScreenEvent.Error(errorMessageId)
+                        )
+                    }
                 )
     }
 
