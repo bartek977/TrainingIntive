@@ -15,6 +15,7 @@ class RoomModule {
     @Provides
     @Singleton
     fun provideDatabase(context: Context) =
+        // TODO Could be moved to some DatabaseProvider object
         Room.databaseBuilder(
             context.applicationContext,
             ApplicationDatabase::class.java,

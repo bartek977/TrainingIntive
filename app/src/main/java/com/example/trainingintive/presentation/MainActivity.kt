@@ -15,6 +15,7 @@ import com.example.trainingintive.navigators.MainNavigator
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
 
+// TODO You could create some base Activity class to keep there navigator attach/detach logic
 class MainActivity : AppCompatActivity() {
 
     @Inject
@@ -29,10 +30,12 @@ class MainActivity : AppCompatActivity() {
         (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // TODO This part could be extracted to some private fun for readability
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
+        //
         navigator.attachActivity(this)
     }
 

@@ -1,4 +1,4 @@
-package com.example.trainingintive.adapter
+package com.example.trainingintive.adapter // TODO You haven't changed package, always look at Android Studio warnings :)
 
 import android.widget.ImageView
 import androidx.core.net.toUri

@@ -21,6 +21,7 @@ class SplashNavigator @Inject constructor() : Navigator() {
         }
     }
 
+    // TODO Such logic should not be in navigator, should be adjusted according to Clean Architecture
     private fun checkIfUserIsLoggedAndDisplayMainOrLoginScreen() {
 
         if (isUserLogged()) {
@@ -36,11 +37,13 @@ class SplashNavigator @Inject constructor() : Navigator() {
     }
 
     private fun launchSignInFlow() {
+        // TODO Providers should be in separate class/object and should be injected
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build()
         )
         activity?.startActivityForResult(
+            // TODO It looks like a something that could be extracted to separate class/object
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)

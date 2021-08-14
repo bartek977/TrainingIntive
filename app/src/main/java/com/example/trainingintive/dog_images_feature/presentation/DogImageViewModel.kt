@@ -32,6 +32,7 @@ class DogImageViewModel @Inject constructor(
                 .observeOn(schedulers.ui())
                 .subscribe(
                     { dog ->
+                        // TODO `postValue` is not needed here, use setValue
                         _dog.postValue(dog.url)
                         insertDogImageIntoLocalDatabase(dog)
                     },

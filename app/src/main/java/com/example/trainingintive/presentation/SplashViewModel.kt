@@ -14,9 +14,11 @@ class SplashViewModel @Inject constructor(
     private val schedulers: SchedulersProvider
 ) : ViewModel() {
 
+    // TOOD Use CompositeDisposables for consistency
     private val downloadData: Disposable
 
     init {
+        // TODO Delay time (5 seconds) should be extracted to some constant with proper name
         downloadData = Single.timer(5, TimeUnit.SECONDS)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())

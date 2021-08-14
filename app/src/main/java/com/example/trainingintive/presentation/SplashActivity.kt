@@ -25,6 +25,7 @@ class SplashActivity : AppCompatActivity() {
         (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         navigator.attachActivity(this)
+        // TODO Use `by lazy` here
         viewModel = ViewModelProvider(this, viewModelFactory)[SplashViewModel::class.java]
     }
 

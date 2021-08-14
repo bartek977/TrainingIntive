@@ -12,5 +12,6 @@ class ViewModelFactory @Inject constructor(
         @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+        // TODO You could suppress such warnings if you know what you are doing and this warning is not needed
         viewModels[modelClass]?.get() as T
 }
