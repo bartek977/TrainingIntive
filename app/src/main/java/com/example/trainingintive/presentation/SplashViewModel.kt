@@ -4,22 +4,23 @@ import androidx.lifecycle.ViewModel
 import com.example.trainingintive.navigators.SplashNavigator
 import com.example.trainingintive.rx.SchedulersProvider
 import com.example.trainingintive.util.SplashScreenEvent
+import com.example.trainingintive.util.plusAssign
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+
+private const val DELAY_IN_SECONDS = 5L
 
 class SplashViewModel @Inject constructor(
     private val navigator: SplashNavigator,
     private val schedulers: SchedulersProvider
 ) : ViewModel() {
 
-    // TOOD Use CompositeDisposables for consistency
-    private val downloadData: Disposable
+    private val disposables = CompositeDisposable()
 
     init {
-        // TODO Delay time (5 seconds) should be extracted to some constant with proper name
-        downloadData = Single.timer(5, TimeUnit.SECONDS)
+        disposables += Single.timer(DELAY_IN_SECONDS, TimeUnit.SECONDS)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
             .subscribe(
@@ -30,7 +31,7 @@ class SplashViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        downloadData.dispose()
+        disposables.dispose()
     }
 
     fun onSuccesLogin() {
