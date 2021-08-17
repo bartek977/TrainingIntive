@@ -26,8 +26,7 @@ class ActivitiesViewModel @Inject constructor(
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
             .subscribe(
-                // TODO `postValue` is not needed here, use `setValue`
-                { _activities.postValue(_activities.value!! + it) },
+                { _activities.value = _activities.value!! + it },
                 {
                     val errorMessageId = ErrorMessageId.getId(it as Exception)
                     navigator.sendEvent(
