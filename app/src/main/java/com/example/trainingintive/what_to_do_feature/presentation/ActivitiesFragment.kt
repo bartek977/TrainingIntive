@@ -32,27 +32,12 @@ class ActivitiesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // TODO Should be simplified, like this:
         val binding = FragmentActivitiesBinding.inflate(inflater, container, false)
         binding.apply {
             activitiesViewmodel = activitiesViewModel
             lifecycleOwner = viewLifecycleOwner
             recyclerView.adapter = adapter
         }
-
-        // val binding = FragmentActivitiesBinding.inflate(inflater, container, false)
-        // binding.activitiesViewmodel = activitiesViewModel
-        // binding.lifecycleOwner = viewLifecycleOwner
-        // val recyclerView = binding.recyclerView
-        // val adapter = adapter
-        // TODO It should be implemented as a BindingAdapter to set in XML which data should be observed by RecyclerView
-        activitiesViewModel.activities.observe(
-            viewLifecycleOwner,
-            {
-                adapter.activities = it
-            }
-        )
-        // recyclerView.adapter = adapter
         return binding.root
     }
 }
