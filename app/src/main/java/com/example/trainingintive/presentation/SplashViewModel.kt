@@ -1,6 +1,7 @@
 package com.example.trainingintive.presentation
 
 import androidx.lifecycle.ViewModel
+import com.example.trainingintive.domain.usecase.IsUserLoggedUseCase
 import com.example.trainingintive.navigators.SplashNavigator
 import com.example.trainingintive.rx.SchedulersProvider
 import com.example.trainingintive.util.SplashScreenEvent
@@ -14,7 +15,8 @@ private const val DELAY_IN_SECONDS = 5L
 
 class SplashViewModel @Inject constructor(
     private val navigator: SplashNavigator,
-    private val schedulers: SchedulersProvider
+    private val schedulers: SchedulersProvider,
+    private val isUserLoggedUseCase: IsUserLoggedUseCase
 ) : ViewModel() {
 
     private val disposables = CompositeDisposable()
@@ -24,7 +26,7 @@ class SplashViewModel @Inject constructor(
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
             .subscribe(
-                { navigator.sendEvent(SplashScreenEvent.DisplayUserScreen) },
+                { checkIfUserIsLoggedAndSendEventToNavigator() },
                 { navigator.sendEvent(SplashScreenEvent.Error) }
             )
     }
@@ -40,5 +42,13 @@ class SplashViewModel @Inject constructor(
 
     fun onFailedLogin() {
         navigator.sendEvent(SplashScreenEvent.Error)
+    }
+
+    private fun checkIfUserIsLoggedAndSendEventToNavigator() {
+        if (isUserLoggedUseCase.isLogged()) {
+            navigator.sendEvent(SplashScreenEvent.DisplayUserScreen)
+        } else {
+            navigator.sendEvent(SplashScreenEvent.DisplayLogInForm)
+        }
     }
 }
