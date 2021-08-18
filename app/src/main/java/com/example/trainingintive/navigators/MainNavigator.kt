@@ -22,10 +22,9 @@ class MainNavigator @Inject constructor() : Navigator() {
     }
 
     private fun logoutAndDisplayStartScreen() {
-        // TODO You are using let but not using it's argument (it) so it is redundant, probably it is some typo and it should be used like in `showSnackBar`
-        activity?.let {
-            AuthUI.getInstance().signOut(it) // TODO It should be called from data layer (repository) and you should call it from ViewModel via UseCase
-            activity?.startActivity(Intent(activity, SplashActivity::class.java))
+        activity?.let { activity ->
+            AuthUI.getInstance().signOut(activity) // TODO It should be called from data layer (repository) and you should call it from ViewModel via UseCase
+            activity.startActivity(Intent(activity, SplashActivity::class.java))
             finishActivity()
         }
     }

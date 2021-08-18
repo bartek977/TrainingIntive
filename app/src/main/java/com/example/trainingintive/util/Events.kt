@@ -7,6 +7,7 @@ interface Event {
 sealed class SplashScreenEvent : Event {
     object DisplayUserScreen : SplashScreenEvent()
     object Error : SplashScreenEvent()
+    object DisplayLogInForm : SplashScreenEvent()
 }
 
 sealed class MainScreenEvent : Event {
