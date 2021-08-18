@@ -8,7 +8,7 @@
     <string name="fragment_dog_images_label">fragment_dog_images</string>
     <string name="logout">Wyloguj</string>
     <string name="internet_connection_error">Błąd pobierania danych. Sprawdź połączenie internetowe.</string>
-    <string name="unkonwn_error">Nieznany błąd</string>
+    <string name="unknown_error">Nieznany błąd</string>
     <string name="fragment_album_label">fragment_album</string>
     <string name="album_tab_title">Album</string>
 </resources>
