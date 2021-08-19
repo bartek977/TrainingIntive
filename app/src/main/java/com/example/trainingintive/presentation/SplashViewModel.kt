@@ -21,7 +21,7 @@ class SplashViewModel @Inject constructor(
 
     private val disposables = CompositeDisposable()
 
-    init {
+    fun start() {
         disposables += Single.timer(DELAY_IN_SECONDS, TimeUnit.SECONDS)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
@@ -31,9 +31,12 @@ class SplashViewModel @Inject constructor(
             )
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        disposables.dispose()
+    private fun checkIfUserIsLoggedAndSendEventToNavigator() {
+        if (isUserLoggedUseCase.isLogged()) {
+            navigator.sendEvent(SplashScreenEvent.DisplayUserScreen)
+        } else {
+            navigator.sendEvent(SplashScreenEvent.DisplayLogInForm)
+        }
     }
 
     fun onSuccesLogin() {
@@ -44,11 +47,8 @@ class SplashViewModel @Inject constructor(
         navigator.sendEvent(SplashScreenEvent.Error)
     }
 
-    private fun checkIfUserIsLoggedAndSendEventToNavigator() {
-        if (isUserLoggedUseCase.isLogged()) {
-            navigator.sendEvent(SplashScreenEvent.DisplayUserScreen)
-        } else {
-            navigator.sendEvent(SplashScreenEvent.DisplayLogInForm)
-        }
+    override fun onCleared() {
+        super.onCleared()
+        disposables.dispose()
     }
 }
