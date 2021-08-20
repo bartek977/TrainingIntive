@@ -40,14 +40,10 @@ class AlbumViewModel @Inject constructor(
             )
     }
 
-    fun changeImagePosition(imageUrl: DogImageUrl) {
-        repository.update(imageUrl)
-            .subscribeOn(schedulers.io())
-            .observeOn(schedulers.ui())
-            .subscribe()
-    }
+    fun changeImagePosition(from: Int, to: Int) {}
 
-    fun removeImage(imageUrl: DogImageUrl) {
+    fun removeImage(index: Int) {
+        val imageUrl = _imageUrls.value!![index]
         repository.remove(imageUrl)
             .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
