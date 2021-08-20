@@ -21,7 +21,7 @@ class DogImageViewModelTest : RulesForTests() {
     val sampleDog = DogImageUrl(sampleImageUrl, sampleStatus)
     val repository: DogImageRepository = mockk {
         every { getDogImageUrl() } returns Single.just(sampleDog)
-        every { insertIntoLocalDatabase(any()) } returns Completable.complete()
+        every { insert(any()) } returns Completable.complete()
     }
     val schedulersForTests = TestSchedulersProvider()
 
@@ -38,7 +38,7 @@ class DogImageViewModelTest : RulesForTests() {
     fun `after successfully download, dogimage should be inserted into local database`() {
         DogImageViewModel(repository, schedulersForTests)
 
-        verify { repository.insertIntoLocalDatabase(sampleDog) }
+        verify { repository.insert(sampleDog) }
     }
 
     @Test

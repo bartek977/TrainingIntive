@@ -1,6 +1,7 @@
 package com.example.trainingintive.di
 
 import android.content.Context
+import com.example.trainingintive.dog_images_feature.presentation.AlbumFragment
 import com.example.trainingintive.dog_images_feature.presentation.DogImagesFragment
 import com.example.trainingintive.presentation.MainActivity
 import com.example.trainingintive.presentation.SplashActivity
@@ -31,4 +32,5 @@ interface AppComponent {
     fun inject(activity: SplashActivity)
     fun inject(fragment: DogImagesFragment)
     fun inject(activity: MainActivity)
+    fun inject(fragment: AlbumFragment)
 }

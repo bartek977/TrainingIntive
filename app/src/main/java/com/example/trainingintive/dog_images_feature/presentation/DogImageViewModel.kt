@@ -11,7 +11,6 @@ import com.example.trainingintive.util.MainScreenEvent
 import com.example.trainingintive.util.plusAssign
 import com.example.trainingintive.util.toErrorTextId
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import java.lang.Exception
 import javax.inject.Inject
 
 class DogImageViewModel @Inject constructor(
@@ -45,7 +44,7 @@ class DogImageViewModel @Inject constructor(
 
     private fun insertDogImageIntoLocalDatabase(dogImageUrl: DogImageUrl) {
         disposables +=
-            repository.insertIntoLocalDatabase(dogImageUrl)
+            repository.insert(dogImageUrl)
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())
                 .subscribe()

@@ -5,8 +5,8 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.trainingintive.what_to_do_feature.domain.model.ActivityModel
-import com.example.trainingintive.what_to_do_feature.presentation.ActivityModelAdapter
+import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
+import com.example.trainingintive.dog_images_feature.presentation.AlbumAdapter
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -19,7 +19,7 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 @Suppress("UNCHECKED_CAST")
 @BindingAdapter("data")
 fun RecyclerView.bindData(items: List<Any>) {
-    if (adapter is ActivityModelAdapter) {
-        (adapter as ActivityModelAdapter).activities = items as List<ActivityModel>
+    if (adapter is AlbumAdapter) {
+        (adapter as AlbumAdapter).imageUrls = items as List<DogImageUrl>
     }
 }

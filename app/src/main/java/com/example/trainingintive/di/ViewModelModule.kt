@@ -2,6 +2,7 @@ package com.example.trainingintive.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.trainingintive.dog_images_feature.presentation.AlbumViewModel
 import com.example.trainingintive.dog_images_feature.presentation.DogImageViewModel
 import com.example.trainingintive.presentation.MainViewModel
 import com.example.trainingintive.presentation.SplashViewModel
@@ -34,4 +35,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     abstract fun mainViewModel(viewModel: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AlbumViewModel::class)
+    abstract fun albumViewModel(viewModel: AlbumViewModel): ViewModel
 }
