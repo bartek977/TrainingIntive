@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.trainingintive.navigators.MainNavigator
 import com.example.trainingintive.rx.SchedulersProvider
-import com.example.trainingintive.util.ErrorMessageId
 import com.example.trainingintive.util.MainScreenEvent
+import com.example.trainingintive.util.toErrorTextId
 import com.example.trainingintive.what_to_do_feature.domain.model.ActivityModel
 import com.example.trainingintive.what_to_do_feature.domain.usecase.GetActivityUseCase
 import java.lang.Exception
@@ -28,9 +28,8 @@ class ActivitiesViewModel @Inject constructor(
             .subscribe(
                 { _activities.value = _activities.value!! + it },
                 {
-                    val errorMessageId = ErrorMessageId.getId(it as Exception)
                     navigator.sendEvent(
-                        MainScreenEvent.Error(errorMessageId)
+                        MainScreenEvent.Error(it.toErrorTextId())
                     )
                 }
             )
