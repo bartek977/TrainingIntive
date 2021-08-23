@@ -33,17 +33,17 @@ class ActivitiesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentActivitiesBinding.inflate(inflater, container, false)
-        binding.activitiesViewmodel = activitiesViewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-        val recyclerView = binding.recyclerView
-        val adapter = adapter
+        binding.apply {
+            activitiesViewmodel = activitiesViewModel
+            lifecycleOwner = viewLifecycleOwner
+            recyclerView.adapter = adapter
+        }
         activitiesViewModel.activities.observe(
             viewLifecycleOwner,
             {
                 adapter.submitData(lifecycle, it)
             }
         )
-        recyclerView.adapter = adapter
         return binding.root
     }
 }

@@ -7,9 +7,8 @@ import com.example.trainingintive.dog_images_feature.data.repository.DogImageRep
 import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
 import com.example.trainingintive.navigators.MainNavigator
 import com.example.trainingintive.rx.SchedulersProvider
-import com.example.trainingintive.util.ErrorMessageId
 import com.example.trainingintive.util.MainScreenEvent
-import java.lang.Exception
+import com.example.trainingintive.util.toErrorTextId
 import javax.inject.Inject
 
 class AlbumViewModel @Inject constructor(
@@ -32,9 +31,8 @@ class AlbumViewModel @Inject constructor(
             .subscribe(
                 { _imageUrls.value = it },
                 {
-                    val errorMessageId = ErrorMessageId.getId(it as Exception)
                     navigator.sendEvent(
-                        MainScreenEvent.Error(errorMessageId)
+                        MainScreenEvent.Error(it.toErrorTextId())
                     )
                 }
             )

@@ -3,34 +3,19 @@ package com.example.trainingintive.presentation
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.trainingintive.MyApplication
-import com.example.trainingintive.di.ViewModelFactory
 import com.example.trainingintive.navigators.SIGN_IN_RESULT_CODE
 import com.example.trainingintive.navigators.SplashNavigator
-import javax.inject.Inject
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity<SplashNavigator>() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    @Inject
-    lateinit var navigator: SplashNavigator
-
-    lateinit var viewModel: SplashViewModel
+    val viewModel: SplashViewModel by lazy { ViewModelProvider(this, viewModelFactory)[SplashViewModel::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
-        navigator.attachActivity(this)
-        viewModel = ViewModelProvider(this, viewModelFactory)[SplashViewModel::class.java]
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        navigator.detachActivityAndResetEvent()
+        viewModel.start()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -1,4 +1,4 @@
-package com.example.trainingintive.adapter
+package com.example.trainingintive.util
 
 import android.widget.ImageView
 import androidx.core.net.toUri

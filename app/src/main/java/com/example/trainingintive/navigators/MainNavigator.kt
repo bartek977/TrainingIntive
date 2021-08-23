@@ -22,9 +22,9 @@ class MainNavigator @Inject constructor() : Navigator() {
     }
 
     private fun logoutAndDisplayStartScreen() {
-        activity?.let {
-            AuthUI.getInstance().signOut(it)
-            activity?.startActivity(Intent(activity, SplashActivity::class.java))
+        activity?.let { activity ->
+            AuthUI.getInstance().signOut(activity) // TODO It should be called from data layer (repository) and you should call it from ViewModel via UseCase
+            activity.startActivity(Intent(activity, SplashActivity::class.java))
             finishActivity()
         }
     }
