@@ -3,8 +3,9 @@ package com.example.trainingintive.dog_images_feature.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.trainingintive.dog_images_feature.data.repository.DogImageRepository
 import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
+import com.example.trainingintive.dog_images_feature.domain.usecase.GetDogImageUrlUseCase
+import com.example.trainingintive.dog_images_feature.domain.usecase.InsertDogImageUrlUseCase
 import com.example.trainingintive.navigators.MainNavigator
 import com.example.trainingintive.rx.SchedulersProvider
 import com.example.trainingintive.util.MainScreenEvent
@@ -14,7 +15,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class DogImageViewModel @Inject constructor(
-    private val repository: DogImageRepository,
+    private val getDogImageUrlUseCase: GetDogImageUrlUseCase,
+    private val insertDogImageUrlUseCase: InsertDogImageUrlUseCase,
     private val schedulers: SchedulersProvider,
     private val mainNavigator: MainNavigator
 ) : ViewModel() {
@@ -26,7 +28,7 @@ class DogImageViewModel @Inject constructor(
 
     init {
         disposables +=
-            repository.getDogImageUrl()
+            getDogImageUrlUseCase.execute()
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())
                 .subscribe(
@@ -44,7 +46,7 @@ class DogImageViewModel @Inject constructor(
 
     private fun insertDogImageIntoLocalDatabase(dogImageUrl: DogImageUrl) {
         disposables +=
-            repository.insert(dogImageUrl)
+            insertDogImageUrlUseCase.execute(dogImageUrl)
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())
                 .subscribe()

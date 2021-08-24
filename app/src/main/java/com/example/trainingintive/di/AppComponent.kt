@@ -1,6 +1,7 @@
 package com.example.trainingintive.di
 
 import android.content.Context
+import com.example.trainingintive.dog_images_feature.di.DogRepositoryModule
 import com.example.trainingintive.dog_images_feature.presentation.AlbumFragment
 import com.example.trainingintive.dog_images_feature.presentation.DogImagesFragment
 import com.example.trainingintive.presentation.MainActivity
@@ -18,7 +19,8 @@ import javax.inject.Singleton
         NetworkModule::class,
         RoomModule::class,
         RepositoryModule::class,
-        UserRepositoryModule::class
+        UserRepositoryModule::class,
+        DogRepositoryModule::class
     ]
 )
 interface AppComponent {
