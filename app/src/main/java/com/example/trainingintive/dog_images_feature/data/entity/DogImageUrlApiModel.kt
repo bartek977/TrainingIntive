@@ -8,5 +8,5 @@ data class DogImageUrlApiModel(
     val url: String,
     val status: String
 ) {
-    fun toDomain() = DogImageUrl(url)
+    fun toDomain(position: Int) = DogImageUrl(url, position)
 }

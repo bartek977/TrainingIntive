@@ -9,9 +9,10 @@ import com.squareup.moshi.Json
 data class DogImageUrlDb(
     @PrimaryKey
     @Json(name = "message")
-    val url: String
+    val url: String,
+    val position: Int
 ) {
-    fun toDomain() = DogImageUrl(url)
+    fun toDomain() = DogImageUrl(url, position)
 }
 
-fun DogImageUrl.toDatabaseEntity() = DogImageUrlDb(url)
+fun DogImageUrl.toDatabaseEntity() = DogImageUrlDb(url, position)
