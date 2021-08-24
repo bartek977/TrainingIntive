@@ -4,24 +4,25 @@ import com.example.trainingintive.dog_images_feature.data.entity.toDatabaseEntit
 import com.example.trainingintive.dog_images_feature.data.local.DogImageDao
 import com.example.trainingintive.dog_images_feature.data.network.DogImageApiService
 import com.example.trainingintive.dog_images_feature.domain.model.DogImageUrl
+import com.example.trainingintive.dog_images_feature.domain.repository.DogImageRepository
 import javax.inject.Inject
 
-class DogImageRepository @Inject constructor(
+class DogImageRepositoryImpl @Inject constructor(
     private val dogImageApiService: DogImageApiService,
     private val dogImageDao: DogImageDao
-) {
+) : DogImageRepository {
 
-    fun getDogImageUrl() =
+    override fun getDogImageUrl() =
         dogImageApiService.getDogImage()
             .map { it.toDomain() }
 
-    fun getAllImageUrls() =
+    override fun getAllImageUrls() =
         dogImageDao.getAllImageUrls()
             .map { it.map { it.toDomain() } }
 
-    fun insert(imageUrl: DogImageUrl) = dogImageDao.insert(imageUrl.toDatabaseEntity())
+    override fun insert(imageUrl: DogImageUrl) = dogImageDao.insert(imageUrl.toDatabaseEntity())
 
-    fun update(imageUrl: DogImageUrl) = dogImageDao.update(imageUrl.toDatabaseEntity())
+    override fun update(imageUrl: DogImageUrl) = dogImageDao.update(imageUrl.toDatabaseEntity())
 
-    fun remove(imageUrl: DogImageUrl) = dogImageDao.remove(imageUrl.toDatabaseEntity())
+    override fun remove(imageUrl: DogImageUrl) = dogImageDao.remove(imageUrl.toDatabaseEntity())
 }
