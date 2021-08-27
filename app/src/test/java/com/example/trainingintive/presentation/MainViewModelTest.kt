@@ -1,7 +1,6 @@
-package com.example.trainingintive.viewmodels
+package com.example.trainingintive.presentation
 
 import com.example.trainingintive.navigators.MainNavigator
-import com.example.trainingintive.presentation.MainViewModel
 import com.example.trainingintive.util.MainScreenEvent
 import io.mockk.mockk
 import io.mockk.verify
