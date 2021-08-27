@@ -6,7 +6,6 @@ import com.example.trainingintive.R
 import com.example.trainingintive.presentation.SplashActivity
 import com.example.trainingintive.util.Event
 import com.example.trainingintive.util.MainScreenEvent
-import com.firebase.ui.auth.AuthUI
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -16,14 +15,13 @@ class MainNavigator @Inject constructor() : Navigator() {
 
     override fun action(event: Event) {
         when (event) {
-            is MainScreenEvent.Logout -> logoutAndDisplayStartScreen()
+            is MainScreenEvent.Logout -> displayStartScreen()
             is MainScreenEvent.Error -> showSnackBar(event.messageId)
         }
     }
 
-    private fun logoutAndDisplayStartScreen() {
+    private fun displayStartScreen() {
         activity?.let { activity ->
-            AuthUI.getInstance().signOut(activity) // TODO It should be called from data layer (repository) and you should call it from ViewModel via UseCase
             activity.startActivity(Intent(activity, SplashActivity::class.java))
             finishActivity()
         }
