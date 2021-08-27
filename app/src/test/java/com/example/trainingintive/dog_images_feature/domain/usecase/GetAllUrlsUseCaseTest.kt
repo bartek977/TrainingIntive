@@ -25,14 +25,14 @@ class GetAllUrlsUseCaseTest {
     @Test
     fun `check returned value`() {
         val list = listOf(
-            DogImageUrl("test1"),
-            DogImageUrl("test2"),
-            DogImageUrl("test3")
+            DogImageUrl("test1", 0),
+            DogImageUrl("test2", 1),
+            DogImageUrl("test3", 2)
         )
         every { repository.getAllImageUrls() } returns Flowable.just(list)
 
-        tested.execute()
-            .test()
-            .assertValue(list)
+        val result = tested.execute().test()
+
+        result.assertValue(list)
     }
 }

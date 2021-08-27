@@ -27,8 +27,8 @@ class GetActivityUseCaseTest {
     fun `check returned value`() {
         every { repository.getActivity() } returns Single.just(activity)
 
-        tested.execute()
-            .test()
-            .assertValue(activity)
+        val result = tested.execute().test()
+
+        result.assertValue(activity)
     }
 }
