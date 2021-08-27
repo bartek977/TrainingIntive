@@ -11,7 +11,7 @@ import org.junit.Test
 class RemoveDogImageUseCaseTest {
 
     val dogImageUrl =
-        DogImageUrl("https:\\/\\/images.dog.ceo\\/breeds\\/bulldog-french\\/n02108915_9666.jpg")
+        DogImageUrl("https:\\/\\/images.dog.ceo\\/breeds\\/bulldog-french\\/n02108915_9666.jpg", 0)
     val repository: DogImageRepository = mockk()
     val tested = RemoveDogImageUseCase(repository)
 

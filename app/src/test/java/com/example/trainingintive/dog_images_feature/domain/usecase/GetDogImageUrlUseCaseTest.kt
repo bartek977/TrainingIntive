@@ -11,7 +11,7 @@ import org.junit.Test
 class GetDogImageUrlUseCaseTest {
 
     val dogImageUrl =
-        DogImageUrl("https:\\/\\/images.dog.ceo\\/breeds\\/bulldog-french\\/n02108915_9666.jpg")
+        DogImageUrl("https:\\/\\/images.dog.ceo\\/breeds\\/bulldog-french\\/n02108915_9666.jpg", 0)
     val repository: DogImageRepository = mockk()
     val tested = GetDogImageUrlUseCase(repository)
 
@@ -28,8 +28,8 @@ class GetDogImageUrlUseCaseTest {
     fun `check returned value from repository`() {
         every { repository.getDogImageUrl() } returns Single.just(dogImageUrl)
 
-        tested.execute()
-            .test()
-            .assertValue(dogImageUrl)
+        val result = tested.execute().test()
+
+        result.assertValue(dogImageUrl)
     }
 }
