@@ -1,6 +1,6 @@
 package com.example.trainingintive.di
 
-import android.content.Context
+import com.example.trainingintive.MyApplication
 import com.example.trainingintive.data.ApplicationDatabase
 import com.example.trainingintive.providers.DatabaseProvider
 import dagger.Module
@@ -12,8 +12,8 @@ class RoomModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(context: Context) =
-        DatabaseProvider.get(context)
+    fun provideDatabase(application: MyApplication) =
+        DatabaseProvider.get(application.applicationContext)
 
     @Provides
     @Singleton

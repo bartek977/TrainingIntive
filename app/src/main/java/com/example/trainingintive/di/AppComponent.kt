@@ -1,6 +1,6 @@
 package com.example.trainingintive.di
 
-import android.content.Context
+import com.example.trainingintive.MyApplication
 import com.example.trainingintive.dog_images_feature.di.DogRepositoryModule
 import com.example.trainingintive.dog_images_feature.presentation.AlbumFragment
 import com.example.trainingintive.dog_images_feature.presentation.DogImagesFragment
@@ -27,7 +27,7 @@ interface AppComponent {
 
     @Component.Factory
     interface Factory {
-        fun create(@BindsInstance context: Context): AppComponent
+        fun create(@BindsInstance application: MyApplication): AppComponent
     }
 
     fun inject(fragment: ActivitiesFragment)
