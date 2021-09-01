@@ -42,14 +42,14 @@ class DogImageViewModelTest : RulesForTests() {
     @Test
     fun `when viewmodel finish init, livedata should contain dog imiage url`() {
         val sampleDog: DogImageUrl = mockk(relaxed = true)
+        every { getDogImageUrlUseCase.execute() } returns Single.just(sampleDog)
+        every { insertDogImageUrlUseCase.execute(any()) } returns Completable.complete()
         val tested = DogImageViewModel(
             getDogImageUrlUseCase,
             insertDogImageUrlUseCase,
             schedulersForTests,
             mainNavigator
         )
-        every { getDogImageUrlUseCase.execute() } returns Single.just(sampleDog)
-        every { insertDogImageUrlUseCase.execute(any()) } returns Completable.complete()
 
         tested.dog.observeForever { result ->
             result shouldBeEqualTo sampleDog.url
