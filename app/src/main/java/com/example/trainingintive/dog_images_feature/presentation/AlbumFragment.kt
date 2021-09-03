@@ -1,33 +1,22 @@
 package com.example.trainingintive.dog_images_feature.presentation
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.trainingintive.MyApplication
+import androidx.fragment.app.viewModels
 import com.example.trainingintive.databinding.FragmentAlbumBinding
-import com.example.trainingintive.di.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class AlbumFragment : Fragment() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
 
     @Inject
     lateinit var adapter: AlbumAdapter
 
-    val albumViewModel: AlbumViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[AlbumViewModel::class.java]
-    }
-
-    override fun onAttach(context: Context) {
-        (requireActivity().application as MyApplication).appComponent.inject(this)
-        super.onAttach(context)
-    }
+    val albumViewModel: AlbumViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

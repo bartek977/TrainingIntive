@@ -22,5 +22,4 @@ class ChangeImagePositionsUseCaseTest {
 
         verify { repository.changeImagePosition(list, 0, 1) }
     }
-
 }

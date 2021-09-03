@@ -8,8 +8,10 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.example.trainingintive.what_to_do_feature.domain.model.ActivityModel
 import com.example.trainingintive.what_to_do_feature.domain.usecase.GetActivitiesPagingSourceUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class ActivitiesViewModel @Inject constructor(
     getActivitiesPagingSourceUseCase: GetActivitiesPagingSourceUseCase
 ) : ViewModel() {

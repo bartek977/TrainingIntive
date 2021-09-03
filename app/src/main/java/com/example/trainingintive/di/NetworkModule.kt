@@ -6,6 +6,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -14,6 +16,7 @@ import javax.inject.Singleton
 private const val DOG_IMAGE_BASE_URL = "https://dog.ceo"
 private const val ACTIVITY_BASE_URL = "https://www.boredapi.com"
 
+@InstallIn(SingletonComponent::class)
 @Module
 class NetworkModule {
 

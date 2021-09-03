@@ -3,17 +3,18 @@ package com.example.trainingintive.presentation
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
-import com.example.trainingintive.MyApplication
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import com.example.trainingintive.navigators.SIGN_IN_RESULT_CODE
 import com.example.trainingintive.navigators.SplashNavigator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashActivity : BaseActivity<SplashNavigator>() {
 
-    val viewModel: SplashViewModel by lazy { ViewModelProvider(this, viewModelFactory)[SplashViewModel::class.java] }
+    val viewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         viewModel.start()
     }

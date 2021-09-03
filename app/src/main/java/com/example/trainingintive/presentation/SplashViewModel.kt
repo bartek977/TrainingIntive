@@ -6,6 +6,7 @@ import com.example.trainingintive.navigators.SplashNavigator
 import com.example.trainingintive.rx.SchedulersProvider
 import com.example.trainingintive.util.SplashScreenEvent
 import com.example.trainingintive.util.plusAssign
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import java.util.concurrent.TimeUnit
@@ -13,6 +14,7 @@ import javax.inject.Inject
 
 private const val DELAY_IN_SECONDS = 5L
 
+@HiltViewModel
 class SplashViewModel @Inject constructor(
     private val navigator: SplashNavigator,
     private val schedulers: SchedulersProvider,
