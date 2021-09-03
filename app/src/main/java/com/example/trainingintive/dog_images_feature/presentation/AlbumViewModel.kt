@@ -57,7 +57,6 @@ class AlbumViewModel @Inject constructor(
     }
 
     fun changeImagePositionAndUpdateDb(from: Int, to: Int) {
-        println("change image position")
         disposables +=
             changeImagePositionsUseCase.execute(_imageUrls.value!!, from, to)
                 .subscribeOn(schedulers.io())
