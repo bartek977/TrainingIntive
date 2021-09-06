@@ -1,30 +1,18 @@
 package com.example.trainingintive.dog_images_feature.presentation
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.trainingintive.MyApplication
+import androidx.fragment.app.viewModels
 import com.example.trainingintive.databinding.FragmentDogImagesBinding
-import com.example.trainingintive.di.ViewModelFactory
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DogImagesFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    val dogImageViewModel: DogImageViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[DogImageViewModel::class.java]
-    }
-
-    override fun onAttach(context: Context) {
-        (requireActivity().application as MyApplication).appComponent.inject(this)
-        super.onAttach(context)
-    }
+    val dogImageViewModel: DogImageViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

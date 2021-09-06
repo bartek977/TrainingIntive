@@ -1,10 +1,7 @@
 package com.example.trainingintive
 
 import android.app.Application
-import com.example.trainingintive.di.AppComponent
-import com.example.trainingintive.di.DaggerAppComponent
+import dagger.hilt.android.HiltAndroidApp
 
-class MyApplication : Application() {
-
-    val appComponent: AppComponent by lazy { DaggerAppComponent.factory().create(applicationContext) }
-}
+@HiltAndroidApp
+class MyApplication : Application()

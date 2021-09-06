@@ -1,31 +1,22 @@
 package com.example.trainingintive.what_to_do_feature.presentation
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.trainingintive.MyApplication
+import androidx.fragment.app.viewModels
 import com.example.trainingintive.databinding.FragmentActivitiesBinding
-import com.example.trainingintive.di.ViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class ActivitiesFragment : Fragment() {
 
     @Inject
     lateinit var adapter: ActivityModelRxAdapter
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    val activitiesViewModel: ActivitiesViewModel by lazy { ViewModelProvider(this, viewModelFactory)[ActivitiesViewModel::class.java] }
-
-    override fun onAttach(context: Context) {
-        (requireActivity().application as MyApplication).appComponent.inject(this)
-        super.onAttach(context)
-    }
+    val activitiesViewModel: ActivitiesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

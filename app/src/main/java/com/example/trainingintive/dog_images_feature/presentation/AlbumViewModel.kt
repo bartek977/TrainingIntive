@@ -12,9 +12,11 @@ import com.example.trainingintive.rx.SchedulersProvider
 import com.example.trainingintive.util.MainScreenEvent
 import com.example.trainingintive.util.plusAssign
 import com.example.trainingintive.util.toErrorTextId
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
 
+@HiltViewModel
 class AlbumViewModel @Inject constructor(
     private val getAllUrlsUseCase: GetAllUrlsUseCase,
     private val removeDogImageUseCase: RemoveDogImageUseCase,
